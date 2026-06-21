@@ -2,7 +2,7 @@
 
 **Made by:** Saloni
 **GitHub:** https://github.com/saloni375/github-profile-analyzer
-**Live API:** github-profile-analyzer-production-4e11.up.railway.app
+**Live API:** https://github-profile-analyzer-production-4e11.up.railway.app
 
 A backend REST API that fetches GitHub user profile data, calculates insights, and stores them in a MySQL database.
 
