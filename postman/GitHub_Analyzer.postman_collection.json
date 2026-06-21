@@ -1,0 +1,209 @@
+{
+  "info": {
+    "name": "GitHub Profile Analyzer API",
+    "_postman_id": "github-analyzer-collection-2026",
+    "description": "Complete API collection for GitHub Profile Analyzer API.\n\nSetup:\n1. Import this file in Postman\n2. Click on collection name → Variables tab\n3. Set base_url to your server URL\n   Local: http://localhost:3000\n   Live: https://your-app.railway.app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Check if server is running properly"
+      }
+    },
+    {
+      "name": "2 - API Welcome Page",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        },
+        "description": "See all available API endpoints"
+      }
+    },
+    {
+      "name": "3 - Analyze Profile (torvalds)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/analyze/torvalds",
+          "host": ["{{base_url}}"],
+          "path": ["api", "analyze", "torvalds"]
+        },
+        "description": "Analyze Linus Torvalds GitHub profile (Linux creator)"
+      }
+    },
+    {
+      "name": "4 - Analyze Profile (gaearon)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/analyze/gaearon",
+          "host": ["{{base_url}}"],
+          "path": ["api", "analyze", "gaearon"]
+        },
+        "description": "Analyze Dan Abramov GitHub profile (React.js creator)"
+      }
+    },
+    {
+      "name": "5 - Analyze Profile (your username)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/analyze/YOUR_GITHUB_USERNAME",
+          "host": ["{{base_url}}"],
+          "path": ["api", "analyze", "YOUR_GITHUB_USERNAME"]
+        },
+        "description": "Replace YOUR_GITHUB_USERNAME with any valid GitHub username"
+      }
+    },
+    {
+      "name": "6 - Get All Profiles",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/profiles",
+          "host": ["{{base_url}}"],
+          "path": ["api", "profiles"]
+        },
+        "description": "Get all stored profiles from database (default page 1, limit 10)"
+      }
+    },
+    {
+      "name": "7 - Get All Profiles (With Pagination)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/profiles?page=1&limit=5",
+          "host": ["{{base_url}}"],
+          "path": ["api", "profiles"],
+          "query": [
+            { "key": "page", "value": "1" },
+            { "key": "limit", "value": "5" }
+          ]
+        },
+        "description": "Get paginated results - page 1 with 5 results per page"
+      }
+    },
+    {
+      "name": "8 - Get All Profiles (With Search)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/profiles?search=linus",
+          "host": ["{{base_url}}"],
+          "path": ["api", "profiles"],
+          "query": [
+            { "key": "search", "value": "linus" }
+          ]
+        },
+        "description": "Search profiles by username or name"
+      }
+    },
+    {
+      "name": "9 - Get Single Profile (torvalds)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/profiles/torvalds",
+          "host": ["{{base_url}}"],
+          "path": ["api", "profiles", "torvalds"]
+        },
+        "description": "Get full profile details including top repos and language stats"
+      }
+    },
+    {
+      "name": "10 - Compare Profiles",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/compare?users=torvalds,gaearon",
+          "host": ["{{base_url}}"],
+          "path": ["api", "compare"],
+          "query": [
+            { "key": "users", "value": "torvalds,gaearon" }
+          ]
+        },
+        "description": "Compare multiple GitHub profiles side by side"
+      }
+    },
+    {
+      "name": "11 - Database Stats",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/stats",
+          "host": ["{{base_url}}"],
+          "path": ["api", "stats"]
+        },
+        "description": "Get overall stats - top users by stars, top users by followers, popular languages"
+      }
+    },
+    {
+      "name": "12 - Delete Profile (gaearon)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/profiles/gaearon",
+          "host": ["{{base_url}}"],
+          "path": ["api", "profiles", "gaearon"]
+        },
+        "description": "Delete a stored profile from database"
+      }
+    },
+    {
+      "name": "13 - Wrong Username Test (Error Handling)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/analyze/thisuserdoesnotexist999888777",
+          "host": ["{{base_url}}"],
+          "path": ["api", "analyze", "thisuserdoesnotexist999888777"]
+        },
+        "description": "Test error handling - should return 404 user not found"
+      }
+    },
+    {
+      "name": "14 - Wrong Route Test (404 Handler)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/randomroute",
+          "host": ["{{base_url}}"],
+          "path": ["api", "randomroute"]
+        },
+        "description": "Test 404 handler - should return available routes list"
+      }
+    }
+  ]
+}
